@@ -9,6 +9,13 @@ handlers:
     static_files: build/index.html
     upload: build/index.html
 
+basic_scaling:
+  max_instances: 1
 
-manual_scaling:
-  instances: 1
+# manual_scaling:
+#   instances: 1
+
+# define env variables
+
+env_variables:
+  REACT_APP_API_URL: "https://europe-west1-qwiklabs-gcp-01-ec162502d964.cloudfunctions.net/gemini-cloud-function"

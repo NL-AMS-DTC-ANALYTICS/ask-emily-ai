@@ -24,6 +24,7 @@ This is the React frontend for the Emily project.
 
 1. Open the project in Visual Studio Code
 2. Add an `.env` file to the root of the project with the following contents (replace the values with the correct ones):
+3. Add
 
 ```
 REACT_APP_API_URL="<Base URL to the backend>"
