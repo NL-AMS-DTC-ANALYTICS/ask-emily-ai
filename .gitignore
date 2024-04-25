@@ -160,3 +160,7 @@ cython_debug/
 #.idea/
 
 gemini-cloud-function/src/credentials.json
+
+# react files
+
+frontend/node_modules/
