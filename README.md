@@ -2,6 +2,7 @@
 
 - [ask-emily-ai](#ask-emily-ai)
   - [Architecture](#architecture)
+  - [Prompting](#prompting)
 
 Solve with google for Princess Máxima Center
 
