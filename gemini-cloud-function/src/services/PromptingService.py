@@ -14,7 +14,7 @@ class PromptingService:
     def __init__(self):
         self.model = LLMService()
 
-    def prompt(self, chatMessages: list[ChatMessage]) -> str:
+    def prompt(self, chatMessages: list[ChatMessage], language: str, medicalKnowledge: str) -> str:
         firstAIMessage = chatMessages[0].message
         restMessages = chatMessages[1:]
         # Assemble prompt
@@ -26,7 +26,10 @@ class PromptingService:
         chain = chatPromptTemplate | self.model.getModel()
 
         # 4. Get response from LLMService
-        response = chain.invoke({})
+        response = chain.invoke({
+            "language": language,
+            "medical_knowledge": medicalKnowledge
+        })
         logging.info(f"LLM response: {response}")
         return response.content
     

@@ -1,4 +1,4 @@
-import { Container, Stack, Text } from '@mantine/core'
+import { Container, Group, Stack, Text, TextInput } from '@mantine/core'
 import { useState } from 'react'
 import ChatInput from '../../features/chat/ChatInput'
 import { ChatPageProvider } from './context/ChatPageContext'
@@ -6,7 +6,8 @@ import ChatWindow from '../../features/chat/ChatWindow'
 import type ChatMessage from '../../features/chat/model/ChatMessage'
 
 const ChatPage = (): React.ReactElement => {
-    const [rfpId, setRfpId] = useState<string | null>(null)
+    const [medicalKnowledge, setMedicalKnowledge] = useState<string>('')
+    const [language, setLanguage] = useState<string>('')
     const [chatMessages, setChatMessages] = useState<ChatMessage[]>([
         {
             message:
@@ -17,10 +18,10 @@ const ChatPage = (): React.ReactElement => {
 
     return (
         <ChatPageProvider
-            rfpId={rfpId}
-            setRfpId={setRfpId}
             chatMessages={chatMessages}
             setChatMessages={setChatMessages}
+            medicalKnowledge={medicalKnowledge}
+            language={language}
         >
             <Container
                 style={{
@@ -36,6 +37,10 @@ const ChatPage = (): React.ReactElement => {
                     }}
                     gap={'xs'}
                 >
+                    <Group grow>
+                    <TextInput label="Medical Knowledge" value={medicalKnowledge} onChange={(event) => {setMedicalKnowledge(event.currentTarget.value)}} />
+                    <TextInput label="Language" value={language} onChange={(event) => {setLanguage(event.currentTarget.value)}} />
+                    </Group>
                     <ChatWindow />
                     <Stack gap={0}>
                         <Text fz={'10'} c={'grey'}>
