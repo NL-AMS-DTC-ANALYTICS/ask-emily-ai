@@ -11,7 +11,7 @@ const ChatPage = (): React.ReactElement => {
         {
             message:
                 'Hello, I am Emily, a chatbot that can answer your questions about your recent doctor visit. How can I help you today?',
-            user: 'system',
+            user: 'ai',
         },
     ])
 

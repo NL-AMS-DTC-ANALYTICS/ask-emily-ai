@@ -1,7 +1,8 @@
 from model.ChatMessage import ChatMessage
-from prompts.MainPrompt import MainPrompt
+from prompts.MainPrompt import template
 from services.LLMService import LLMService
 from services.TokenMeasurer import TokenMeasurer
+from langchain_core.prompts import ChatPromptTemplate
 
 from langchain.chains import LLMChain
 import functools
@@ -14,19 +15,20 @@ class PromptingService:
         self.model = LLMService()
 
     def prompt(self, chatMessages: list[ChatMessage]) -> str:
-        prompt = chatMessages[-1].message
-        logging.info(f"Prompting LLM with prompt: {prompt}")
-
+        firstAIMessage = chatMessages[0].message
+        restMessages = chatMessages[1:]
         # Assemble prompt
-        NUM_TOKENS = 2600
-        conversation_history = self._getConversationHistory(chatMessages, NUM_TOKENS)
-        chain = LLMChain(llm=self.model.getModel(), prompt=MainPrompt)
+        # NUM_TOKENS = 2600
+        # conversation_history = self._getConversationHistory(chatMessages, NUM_TOKENS)
+        systemMessage = ("system", template + firstAIMessage)
+        convertedChatMessage = [ (chatMessage.user, chatMessage.message) for chatMessage in restMessages ]
+        chatPromptTemplate = ChatPromptTemplate.from_messages([systemMessage, *convertedChatMessage])
+        chain = chatPromptTemplate | self.model.getModel()
 
         # 4. Get response from LLMService
-        logging.info(f"LLM prompt: {MainPrompt.format_prompt(conversation_history=conversation_history)}")
-        response = chain.run(conversation_history=conversation_history)
+        response = chain.invoke({})
         logging.info(f"LLM response: {response}")
-        return response
+        return response.content
     
     def _getConversationHistory(self, chatMessages: list[ChatMessage], nTokens: int) -> str:
         """Get the conversation history from the chat messages, limited by a number of tokens"""
