@@ -33,7 +33,7 @@ const ChatInput = (): React.ReactElement => {
                 console.log(response)
                 const systemChatMessage: ChatMessage = {
                     message: response.data.responseText,
-                    user: 'system',
+                    user: 'ai',
                 }
                 setChatMessages((prev: ChatMessage[]): ChatMessage[] => [
                     ...prev,

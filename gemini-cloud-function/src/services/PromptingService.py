@@ -15,24 +15,18 @@ class PromptingService:
         self.model = LLMService()
 
     def prompt(self, chatMessages: list[ChatMessage]) -> str:
-        prompt = chatMessages[-1].message
-        originalSystemMessage = chatMessages[0]
-        restMessages = chatMessages[1:-1]
-        logging.info(f"Prompting LLM with prompt: {prompt}")
-
+        firstAIMessage = chatMessages[0].message
+        restMessages = chatMessages[1:]
         # Assemble prompt
         # NUM_TOKENS = 2600
         # conversation_history = self._getConversationHistory(chatMessages, NUM_TOKENS)
-        systemMessage = ("system", template + originalSystemMessage.message)
+        systemMessage = ("system", template + firstAIMessage)
         convertedChatMessage = [ (chatMessage.user, chatMessage.message) for chatMessage in restMessages ]
-        userMessage = ("user", "{prompt}")
-        chatPromptTemplate = ChatPromptTemplate.from_messages([systemMessage, *convertedChatMessage, userMessage])
+        chatPromptTemplate = ChatPromptTemplate.from_messages([systemMessage, *convertedChatMessage])
         chain = chatPromptTemplate | self.model.getModel()
 
         # 4. Get response from LLMService
-        response = chain.invoke({
-            "prompt": prompt
-        })
+        response = chain.invoke({})
         logging.info(f"LLM response: {response}")
         return response.content
     

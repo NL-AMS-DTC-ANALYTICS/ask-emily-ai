@@ -16,20 +16,20 @@ const ChatBubble = ({ chatMessage }: ChatBubbleProps): React.ReactElement => {
                 flexDirection: 'row',
                 alignItems: 'center',
                 backgroundColor:
-                    user === 'system'
+                    user !== 'user'
                         ? theme.colors[theme.primaryColor][1]
                         : theme.colors[theme.primaryColor][4],
                 borderRadius: '10px',
                 width: '70%',
-                marginRight: user === 'system' ? 'auto' : 0,
-                marginLeft: user === 'system' ? 0 : 'auto',
+                marginRight: user  !== 'user' ? 'auto' : 0,
+                marginLeft: user  !== 'user' ? 0 : 'auto',
                 textAlign: 'left',
                 padding: '7px',
             }}
         >
             <Stack gap={0}>
                 <Text fw={'bold'} fz={'xs'}>
-                    {user === 'system' ? 'Emily' : 'User'}
+                    {user !== 'user'  ? 'Emily' : 'User'}
                 </Text>
                 {messageLines.map((line, index) => {
                     if (line.length === 0) {

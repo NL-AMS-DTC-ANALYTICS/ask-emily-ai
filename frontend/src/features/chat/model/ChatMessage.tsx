@@ -1,6 +1,6 @@
 interface ChatMessage {
     message: string
-    user: 'system' | 'user'
+    user: 'system' | 'user' | 'ai'
 }
 
 export default ChatMessage
