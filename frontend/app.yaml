@@ -1,21 +1,18 @@
-runtime: nodejs18
-handlers:
-  # Serve all static files with url ending with a file extension
-  - url: /(.*\..+)$
-    static_files: build/\1
-    upload: build/(.*\..+)$
-  # Catch all handler to index.html
-  - url: /.*
-    static_files: build/index.html
-    upload: build/index.html
+runtime: custom
+env: flex
 
-basic_scaling:
-  max_instances: 1
+service: your-service-name  # Replace with your desired service name
 
-# manual_scaling:
-#   instances: 1
+# Specify the Docker image to use (replace details)
+image: europe-west1-qwiklabs-gcp-01-ec162502d964.pkg.dev/repositories/emily-backend:tag
 
-# define env variables
+# Configure health checks (optional)
+livenessProbe:
+  httpGet:
+    path: /healthz  # Replace with your health check path (if applicable)
+    port: 80
 
-env_variables:
-  REACT_APP_API_URL: "https://europe-west1-qwiklabs-gcp-01-ec162502d964.cloudfunctions.net/gemini-cloud-function"
+readinessProbe:
+  httpGet:
+    path: /healthz  # Replace with your health check path (if applicable)
+    port: 80
