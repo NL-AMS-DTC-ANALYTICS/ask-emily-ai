@@ -1,0 +1,4 @@
+functions_framework
+markupsafe
+langchain==0.0.330
+langchain_google_vertexai
