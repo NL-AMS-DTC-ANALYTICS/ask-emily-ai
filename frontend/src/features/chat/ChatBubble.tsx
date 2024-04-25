@@ -29,7 +29,7 @@ const ChatBubble = ({ chatMessage }: ChatBubbleProps): React.ReactElement => {
         >
             <Stack gap={0}>
                 <Text fw={'bold'} fz={'xs'}>
-                    {user === 'system' ? 'BidBot' : 'User'}
+                    {user === 'system' ? 'Emily' : 'User'}
                 </Text>
                 {messageLines.map((line, index) => {
                     if (line.length === 0) {

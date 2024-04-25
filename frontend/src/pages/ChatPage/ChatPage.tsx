@@ -10,7 +10,7 @@ const ChatPage = (): React.ReactElement => {
     const [chatMessages, setChatMessages] = useState<ChatMessage[]>([
         {
             message:
-                'Hello, I am BidBot, a chatbot that helps you write your proposals. Please submit your RFP above and request a piece of generated proposal text below.',
+                'Hello, I am Emily, a chatbot that can answer your questions about your recent doctor visit. How can I help you today?',
             user: 'system',
         },
     ])
@@ -39,10 +39,10 @@ const ChatPage = (): React.ReactElement => {
                     <ChatWindow />
                     <Stack gap={0}>
                         <Text fz={'10'} c={'grey'}>
-                            Please note that BidBot is a chatbot that uses
+                            Please note that Emily is a chatbot that uses
                             machine learning to generate text. It can give
                             untrue or inaccurate responses. Please use your own
-                            discretion when using BidBot.
+                            discretion when using Emily.
                         </Text>
                         <ChatInput />
                     </Stack>
