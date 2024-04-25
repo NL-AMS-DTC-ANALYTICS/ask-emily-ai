@@ -37,8 +37,7 @@ def listen(request) -> str:
     body = GenerationRequestDto.fromJson(request_json)
 
     promptingService = PromptingService()
-    responseLLM = promptingService.prompt(body.chatMessages)
-
+    responseLLM = promptingService.prompt(body.chatMessages, body.language, body.medicalKnowledge)
     response = GenerationResponseDto(responseLLM).toJson()
 
     # add headers for CORS

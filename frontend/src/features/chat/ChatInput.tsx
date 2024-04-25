@@ -8,7 +8,7 @@ import type ChatMessage from './model/ChatMessage'
 const ChatInput = (): React.ReactElement => {
     const [text, setText] = useState('')
 
-    const { chatMessages, setChatMessages } = useContext(ChatPageContext)
+    const { chatMessages, setChatMessages, medicalKnowledge, language } = useContext(ChatPageContext)
     const { generationRequest } = PromptAPI
 
     const [loading, setLoading] = useState(false)
@@ -26,7 +26,7 @@ const ChatInput = (): React.ReactElement => {
             ...prev,
             userChatMessage,
         ])
-        generationRequest(newChatMessages)
+        generationRequest(newChatMessages, medicalKnowledge, language)
             .then(response => {
                 setLoading(false)
                 setError(false)
