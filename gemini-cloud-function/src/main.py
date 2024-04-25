@@ -43,7 +43,7 @@ def listen(request) -> str:
     headers = {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "POST",
-        "Access-Control-Allow-Headers": "Authorization",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
     }
-
+    
     return (jsonify(response), 200, headers)
