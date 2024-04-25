@@ -42,8 +42,8 @@ def listen(request) -> str:
     # add headers for CORS
     headers = {
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "POST",
+        "Access-Control-Allow-Methods": "GET, POST",
         "Access-Control-Allow-Headers": "Content-Type, Authorization",
     }
-    
+
     return (jsonify(response), 200, headers)
