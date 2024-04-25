@@ -1,5 +1,5 @@
 # Frontend
-This is the React frontend for the BidBot project. It is a web application that allows users to upload proposals, RFPs and chat with BidBot.
+This is the React frontend for the Emily project.
 
 ## How to run
 ### Prerequisites
@@ -10,9 +10,7 @@ This is the React frontend for the BidBot project. It is a web application that 
 1. Open the project in Visual Studio Code
 2. Add an `.env` file to the root of the project with the following contents (replace the values with the correct ones):
 ```
-REACT_APP_PROCESS_RFP_KEY="<Key to the processRFP function of the DocumentProcessor Function App>"
-REACT_APP_GENERATION_REQUEST_KEY="<Key to the generationRequest function of the LLMService Function App>"
-REACT_APP_PROCESS_PROPOSAL_KEY="<Key to the processProposal function of the DocumentProcessor Function App>"
+REACT_APP_API_URL="<Base URL to the backend>"
 ```
 3. Install the dependencies by running the following command in the terminal:
 ```
@@ -26,3 +24,9 @@ yarn install
 yarn start
 ```
 3. The frontend should now be running on `http://localhost:3000/`
+
+## Building docker
+
+```
+docker build --build-arg REACT_APP_API_URL="<Base URL to the backend>" -t <container name> .
+```
