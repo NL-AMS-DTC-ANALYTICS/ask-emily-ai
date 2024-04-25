@@ -3,11 +3,15 @@ import api from './api'
 
 export const PromptAPI = {
     generationRequest: async (chatMessages: ChatMessage[]) => {
-        const FUNCTION_KEY = process.env.REACT_APP_GENERATION_REQUEST_KEY
         return await api.post(
-            `https://llmservice-grad.azurewebsites.net/api/generationRequest?code=${FUNCTION_KEY}`,
+            `http://localhost:8081`,
             {
                 chatMessages,
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
             },
         )
     },

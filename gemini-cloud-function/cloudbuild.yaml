@@ -1,0 +1,18 @@
+steps:
+  - id: 'deploy-gemini-cloud-function'
+    name: 'gcr.io/cloud-builders/gcloud'
+    args: [
+      'functions',
+      'deploy',
+      'gemini-cloud-function',
+      '--runtime=python311',
+      '--trigger-http',
+      '--entry-point=listen',
+      '--memory=2048',
+      '--region=europe-west1',
+      '--source=gemini-cloud-function/src',
+      '--service-account=${_SERVICE_ACCOUNT}',
+      '--set-env-vars=ENV=${_ENV}',
+      '--timeout=540',
+    ]
+    timeout: '540s'
