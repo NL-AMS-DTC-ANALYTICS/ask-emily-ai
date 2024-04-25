@@ -19,6 +19,7 @@ provider "google" {
 ## storage.googleapis.com
 ## compute.googleapis.com 
 ## aiplatform.googleapis.com 
+## cloudbuild.googleapis.com
 
 resource "google_project_service" "compute_api" {
   project = var.project
@@ -35,6 +36,11 @@ resource "google_project_service" "storage_api" {
   service = "storage.googleapis.com"
 }
 
+resource "google_project_service" "cloudbuild_api"{
+  project = var.project
+  service = "cloudbuild.googleapis.com"
+
+}
 
 # Prepare the data on Cloud Storage
 resource "google_storage_bucket" "bucket" {
