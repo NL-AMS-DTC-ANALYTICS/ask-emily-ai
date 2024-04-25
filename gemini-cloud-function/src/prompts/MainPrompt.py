@@ -1,11 +1,7 @@
-from langchain.prompts.prompt import PromptTemplate
-
+from langchain_core.prompts import ChatPromptTemplate
 template = """
 ### Instruction ###
 
 ### Chat Log ###
-{conversation_history}
 system:
 """
-
-MainPrompt = PromptTemplate.from_template(template)
