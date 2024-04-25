@@ -36,7 +36,7 @@ export const ChatPageProvider = ({
                 chatMessages,
                 setChatMessages,
                 medicalKnowledge,
-                language
+                language,
             }}
         >
             {children}

@@ -21,7 +21,5 @@ Parent   “What are the chances of recovery?”
 Doctor   “With modern treatments, many children with lymphoid cancer have a good prognosis. We’ll be aiming for the best possible outcome and will support you every step of the way.”
 Parent   “Thank you, Doctor. It’s overwhelming, but I’m relieved to know there’s a plan and support.”
 Doctor   “We’re here for you and your child. Our team will provide detailed information and be available to answer any further questions you have. Let’s schedule a follow-up appointment to discuss the next steps.”
- 
-## Knowledge base 
-None
+
 """

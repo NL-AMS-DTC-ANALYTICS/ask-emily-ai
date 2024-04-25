@@ -11,7 +11,7 @@ class LLMService:
         if "GOOGLE_APPLICATION_CREDENTIALS" not in os.environ:
             raise ValueError("GOOGLE_APPLICATION_CREDENTIALS not found in environment variables.")
         
-        return ChatVertexAI(model="gemini-pro", location="us-central1")
+        return ChatVertexAI(model="gemini-pro", location="us-central1", max_output_tokens=1000)
     
     def getResponse(self, text: str) -> str:
         return self.model(text)
