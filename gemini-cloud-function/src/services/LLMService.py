@@ -6,7 +6,7 @@ class LLMService:
     def __init__(self):
         self.model = self._initModel()
 
-    def _initModel(self) -> object: # TODO: Add return type
+    def _initModel(self) -> ChatVertexAI:
         """Initializes the Gemini model."""
         if "GOOGLE_APPLICATION_CREDENTIALS" not in os.environ:
             raise ValueError("GOOGLE_APPLICATION_CREDENTIALS not found in environment variables.")
@@ -16,5 +16,5 @@ class LLMService:
     def getResponse(self, text: str) -> str:
         return self.model(text)
     
-    def getModel(self) -> object: # TODO: Add return type
+    def getModel(self) -> ChatVertexAI:
         return self.model
