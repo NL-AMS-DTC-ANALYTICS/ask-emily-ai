@@ -48,3 +48,30 @@ resource "google_storage_bucket" "bucket" {
   name = "vertex-ai-vector-search-${var.project}"
   location = var.region
 }
+
+
+# Cloud function to handle llm-service
+resource "google_cloudfunctions_function" "llm_service" {
+  name                  = "llm-service"
+  description           = "llm-service"
+  available_memory_mb   = 256
+  source_archive_bucket = "uploads-1084982549993.europe-west1.cloudfunctions.appspot.com"
+  source_archive_object = "46dc8dfb-9d59-48ea-af68-dad913077947.zip"
+  timeout               = 60
+  entry_point           = "listen"
+  runtime               = "python311"
+  ingress_settings      = "ALLOW_ALL"
+  max_instances         = 1
+
+  environment_variables = {
+    _BUCKET_URI = "gs://$vertex-ai-vector-search-${var.project}"
+  }
+
+  service_account_email = "qwiklabs-gcp-01-ec162502d964@appspot.gserviceaccount.com"
+
+  labels = {
+    deployment-tool = "console-cloud"
+  }
+
+  trigger_http = true
+}
